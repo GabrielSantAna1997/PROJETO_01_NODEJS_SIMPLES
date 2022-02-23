@@ -1,0 +1,11 @@
+ INSTALAÇÃO:
+ 
+    npm init
+
+
+RODAR PROJETO:
+
+    nodemon
+
+
+PROJETO FEITO EM NODE.JS COM EJS E USADO O BANCO SQL.
