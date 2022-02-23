@@ -1,0 +1,36 @@
+<%- include partials/header.ejs %>
+<body>
+    <%- include partials/navbar.ejs %>
+        <div id="card" class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+            <div class="card-header">
+                <h2>Detalhes da pergunta:</h2>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Titulo: <%= pergunta.titulo %>
+                </h5>
+                <p class="card-text">Descrição: <%= pergunta.descricao %>
+                </p>
+                <h3>Respostas</h3>
+                <% respostas.forEach(resposta=> {%>
+                    <br>
+                    <%= resposta.corpo %>
+                    <% }) %>
+            </div>
+            <div class="card-footer">
+                <a href="/deletar/<%= pergunta.id %>" </a><button class="btn btn-danger">Deletar</button></a>
+                <a href="/" </a><button class="btn btn-success">Voltar</button></a>
+            </div>
+        </div>
+</body>
+<%- include partials/footer.ejs %>
+
+<style>
+
+#card{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    max-width: 100% !important;
+}
+    
+</style>

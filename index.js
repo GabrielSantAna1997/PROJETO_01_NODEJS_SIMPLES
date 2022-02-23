@@ -85,4 +85,52 @@ app.post("/responder",(req, res) => {
     });
 });
 
+
+//detelar
+app.get('/deletar/:id', (req,res) => {
+    var id = req.params.id;
+
+    Resposta.destroy({
+        where: {perguntaId: id},
+    })
+    Pergunta.destroy({
+        where: {
+            id: id
+        }
+    }).then(pergunta => {
+        if(id != undefined){ // Pergunta encontrada
+            res.redirect('/')
+        }else{ //pergunta nao encontrada
+            res.render('samples/error-404.ejs');
+        }
+    });
+})
+
+
+//visualizar
+app.get('/visualiza/:id', (req,res) => {
+    var id = req.params.id;
+    Pergunta.findOne({
+        where: {id: id}
+    }).then(pergunta => {
+        if(pergunta != undefined){ // Pergunta encontrada
+
+            Resposta.findAll({
+                where: {perguntaId: pergunta.id},
+                order:[ 
+                    ['id','DESC'] 
+                ]
+            }).then(respostas => {
+                res.render("visualiza",{
+                    pergunta: pergunta,
+                    respostas: respostas
+                });
+            });
+
+        }else{ //pergunta nao encontrada
+            res.render('samples/error-404.ejs');
+        }
+    });
+})
+
 app.listen(8080,()=>{console.log("App rodando!");})

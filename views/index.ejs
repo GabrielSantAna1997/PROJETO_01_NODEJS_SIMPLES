@@ -1,20 +1,25 @@
 <%- include partials/header.ejs %>
 <body>
     <%- include partials/navbar.ejs %>
+    <img src="../img/banner.jpg" class="img-fluid" alt="Responsive image"
+    
+    >
+    
     <div class="container">
         <hr>
         <h1> Perguntas </h1>
         <hr>
-        <a href="/perguntar" class="btn btn-dark">Perguntar</a>
+        <a href="/perguntar" class="btn btn-success">Perguntar</a>
         <hr>
         <% perguntas.forEach(pergunta => { %>
             <br>
             <div class="card">
                 <div class="card-body">
-                    <h3><%= pergunta.titulo %></h3>
+                    <h3>Titulo:</h3><span><%= pergunta.titulo %></span>
                 </div>
                 <div class="card-footer">
                     <a href="/pergunta/<%= pergunta.id %>"</a><button class="btn btn-dark">Responder</button></a>
+                    <a href="/visualiza/<%= pergunta.id %>"</a><button class="btn btn-primary">Detalhes</button></a>
                 </div>
             </div>
         <% }) %>
